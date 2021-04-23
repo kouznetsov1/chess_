@@ -32,7 +32,6 @@ class Board:
     # function used when generating a new board, decides what piece to put on pos
     def starting_piece(self, char, pos):
         color = ""
-
         if (pos < 3 or pos > 6):
             color = self.set_start_color(pos)
             if pos in (2, 7):
@@ -48,7 +47,7 @@ class Board:
             else:
                 return Piece("Q", color)
         else:
-            return Piece("E")
+            pass
 
     # function used when generating a new board, decides what color to set on pos
     def set_start_color(self, pos):
@@ -74,8 +73,12 @@ class Board:
             pos_number -= 1
 
         for row in board_list:
-            for position in row:
-                print(self.board[position].piece_type.value + "(" +
-                      self.board[position].color.value + ")", " ", end="")
+            try:
+                for position in row:
+                    print(self.board[position].print_piece() + "(" + 
+                          self.board[position].color + ")", " ", end="")
+            except:
+                # TODO: fix so that empty squares show up
+                pass
             print("\n", end="")
 
